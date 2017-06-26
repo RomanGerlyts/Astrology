@@ -65,6 +65,7 @@ int main(void) {
 	}
 }
 
+
 void input(Znak arr[]) {
 	for (int i = 0; i < ARR_SIZE; i++) {
 		fflush(stdin);
