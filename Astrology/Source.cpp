@@ -84,5 +84,25 @@ void print_all(Znak arr[]) {
 }
 
 void search(Znak arr[], int m) {
+	int kol = 0;
 	printf("Items found...\n");
+	for (int i = 0; i < ARR_SIZE; i++) {
+		if (arr[i].bday[1] == m) {
+			if (m > 9) {
+				printf("%s\n", arr[i].name);
+				printf("%s\n", arr[i].zodiac);
+				printf("%d.%d.%d\n", arr[i].bday[0], arr[i].bday[1], arr[i].bday[2]);
+				kol++;
+			}
+			else {
+				printf("%s\n", arr[i].name);
+				printf("%s\n", arr[i].zodiac);
+				printf("%d.0%d.%d\n", arr[i].bday[0], arr[i].bday[1], arr[i].bday[2]);
+				kol++;
+			}
+		}
+	}
+	if (kol == 0) {
+		printf("Not found\n");
+	}
 }
