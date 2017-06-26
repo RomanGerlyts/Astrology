@@ -1,62 +1,55 @@
 #include <stdio.h>
-#include <locale.h>
 #include <cstdlib>
-
+#define ARR_SIZE 8
+#define STR_SIZE 50
 
 typedef struct {
-	char * name;
-	char * zodiac;
+	char name[STR_SIZE + 1];
+	char zodiac[STR_SIZE + 1];
 	int bday[3];
 }Znak;
 
-
 /**
-* Ввод одного элемента Znak
+* Input one Znak item
 *
-* @return Введённый Znak
+* @return Inputted Znak element
 */
-Znak input();
+void input(Znak arr[]);
 
 /**
-* Вывод всех элементов массива
+* Print all array items
 *
-* @param Массив Znak
+* @param Znak array
 */
 void print_all(Znak arr[]);
 
 /**
-* Вывод рожденных в указанный месяц
+* Print people, who born in specified month
 *
-* @param Массив Znak, номер месяца
+* @param Znak array, month number
 */
 void search(Znak arr[], int m);
 
 
+
 int main(void) {
-	
-	Znak book[8];
-
-	setlocale(LC_CTYPE, "Rus");
-
-	printf("Введите все элементы массива\n");
-	for (int i = 0; i < 8; i++) {
-		book[i] = input();
-	}
-
+	Znak book[ARR_SIZE];
+	printf("Input all array items\n");
+	input(book);
 	while (1) {
 		int choice;
-		printf("1. Вывод всех элементов\n2. Поиск по месяцу рождения\n3. Завершение работы\n");
+		printf("1. Print all\n2. Search by month\n3. Shut down\n");
 		scanf_s("%d", &choice);
-		switch (choice){
+		switch (choice) {
 		case 1:
 			print_all(book);
 			break;
 		case 2:
 			int mounth;
-			printf("Введите номер месяца рождения\n");
+			printf("Input month of birth\n");
 			scanf_s("%d", &mounth);
 			while (mounth < 1 || mounth > 12) {
-				printf("Ошибка ввода, попробуйте ещё раз\n");
+				printf("Error, try again\n");
 				scanf_s("%d", &mounth);
 			}
 			search(book, mounth);
@@ -66,20 +59,30 @@ int main(void) {
 			return 0;
 			break;
 		default:
-			printf("Ошибка ввода, попробуйте ещё раз\n");
+			printf("Error, try again\n");
 			break;
 		}
 	}
 }
 
-Znak input(){
-	return Znak();
+
+void input(Znak arr[]) {
+	for (int i = 0; i < ARR_SIZE; i++) {
+		fflush(stdin);
+		printf("Enter name: ");
+		scanf("%s", arr[i].name);
+		printf("Enter zodiac: ");
+		scanf("%s", arr[i].zodiac);
+		printf("Enter birth day in dd.mm.yyyy format: ");
+		scanf("%d.%d.%d", &arr[i].bday[0], &arr[i].bday[1], &arr[i].bday[2]);
+		fflush(stdin);
+	}
 }
 
-void print_all(Znak arr[]){
-	printf("Все элементы\n");
+void print_all(Znak arr[]) {
+	printf("All items...\n");
 }
 
-void search(Znak arr[], int m){
-	printf("Найденные элементы\n");
+void search(Znak arr[], int m) {
+	printf("Items found...\n");
 }
