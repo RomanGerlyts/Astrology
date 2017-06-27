@@ -81,6 +81,11 @@ void input(Znak arr[]) {
 
 void print_all(Znak arr[]) {
 	printf("All items...\n");
+	for (int i = 0; i < ARR_SIZE; i++) {
+		puts(arr[i].name);
+		puts(arr[i].zodiac);
+		printf("%d.%d.%d\n", arr[i].bday[0], arr[i].bday[1], arr[i].bday[2]);
+	}
 }
 
 void search(Znak arr[], int m) {
